@@ -5,5 +5,7 @@ export interface INote {
 }
 
 export interface INoteState {
-  readonly notes: Array<INote>;
+  notes: Array<INote>;
+  editorOpen: boolean;
+  currentNoteId: number | null;
 }
