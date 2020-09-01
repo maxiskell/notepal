@@ -1,9 +1,10 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import App from "./App";
+
+import Notes from "./Notes";
 
 test("renders app title", () => {
-  const { getByText } = render(<App />);
+  const { getByText } = render(<Notes />);
   const title = getByText(/Notes/i);
   expect(title).toBeInTheDocument();
 });
