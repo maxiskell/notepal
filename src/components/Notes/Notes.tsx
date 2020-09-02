@@ -1,15 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
 
+import connected from "./connected";
 import { INote } from "../../redux/types";
-import { IAppState } from "../../redux/Store";
-import {
-  addNote,
-  updateNote,
-  openEditor,
-  closeEditor,
-  NoteAction,
-} from "../../redux/actions";
+import { NoteAction } from "../../redux/actions";
 
 import Header from "./Header";
 import Editor from "./Editor";
@@ -50,17 +43,4 @@ export const Notes: React.FC<INotesProps> = (props) => (
   </div>
 );
 
-const mapStateToProps = (store: IAppState) => ({
-  notes: store.noteState.notes,
-  currentNoteId: store.noteState.currentNoteId,
-  editorOpen: store.noteState.editorOpen,
-});
-
-const mapDispatchToProps = {
-  addNote,
-  updateNote,
-  openEditor,
-  closeEditor,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Notes);
+export default connected(Notes);
