@@ -12,6 +12,7 @@ import {
 
 import Header from "./Header";
 import Editor from "./Editor";
+import List from "./List";
 
 export interface INotesProps {
   notes: INote[];
@@ -30,6 +31,10 @@ export const Notes: React.FC<INotesProps> = (props) => (
 
     {props.editorOpen && (
       <Editor close={props.closeEditor} save={props.addNote} />
+    )}
+
+    {!props.editorOpen && props.notes.length > 0 && (
+      <List notes={props.notes} />
     )}
   </div>
 );

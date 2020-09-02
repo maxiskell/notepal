@@ -2,57 +2,82 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 import { Notes, INotesProps } from "./Notes";
-import { openEditor, closeEditor } from "../../redux/actions";
+
+const mockProps: INotesProps = {
+  notes: [],
+  editorOpen: false,
+  addNote: jest.fn(),
+  closeEditor: jest.fn(),
+  openEditor: jest.fn(),
+};
 
 test("renders properly", () => {
-  const props: INotesProps = {
-    notes: [],
-    editorOpen: false,
-    closeEditor,
-    openEditor,
-  };
-  const { container } = render(<Notes {...props} />);
+  const { container } = render(<Notes {...mockProps} />);
   expect(container).toMatchSnapshot();
 });
 
-test("renders app title", () => {
-  const props: INotesProps = {
-    notes: [],
-    editorOpen: false,
-    closeEditor,
-    openEditor,
-  };
-  const { getByText } = render(<Notes {...props} />);
-  const title = getByText(/Notes/i);
-  expect(title).toBeInTheDocument();
-});
-
 test("not render editor if corresponding prop is false", () => {
-  const props: INotesProps = {
-    notes: [],
-    editorOpen: false,
-    closeEditor,
-    openEditor,
-  };
+  const { queryByTestId } = render(<Notes {...mockProps} />);
 
-  const { queryAllByText } = render(<Notes {...props} />);
-  const title = queryAllByText(/Title/i);
-  const content = queryAllByText(/Content/i);
-  expect(title).toHaveLength(0);
-  expect(content).toHaveLength(0);
+  expect(queryByTestId("note-editor")).toBeFalsy();
 });
 
 test("render editor if corresponding prop is true", () => {
   const props: INotesProps = {
-    notes: [],
+    ...mockProps,
     editorOpen: true,
-    closeEditor,
-    openEditor,
+  };
+  const { getByTestId } = render(<Notes {...props} />);
+
+  expect(getByTestId("note-editor")).toBeInTheDocument();
+});
+
+test("not render note list if editor is open", () => {
+  const props: INotesProps = {
+    ...mockProps,
+    editorOpen: true,
+    notes: [
+      {
+        id: 1,
+        title: "First Note",
+        content: "Test Content",
+      },
+      {
+        id: 2,
+        title: "Another Note",
+        content: "Some meaningless Content",
+      },
+    ],
   };
 
-  const { getByText } = render(<Notes {...props} />);
-  const title = getByText(/Title/i);
-  const content = getByText(/Content/i);
-  expect(title).toBeInTheDocument();
-  expect(content).toBeInTheDocument();
+  const { queryByTestId } = render(<Notes {...props} />);
+
+  expect(queryByTestId("note-list")).toBeFalsy();
+});
+
+test("not render note list if no notes present", () => {
+  const { queryByTestId } = render(<Notes {...mockProps} />);
+
+  expect(queryByTestId("note-list")).toBeFalsy();
+});
+
+test("render note list if editor is closed and there are notes present", () => {
+  const props: INotesProps = {
+    ...mockProps,
+    notes: [
+      {
+        id: 1,
+        title: "First Note",
+        content: "Test Content",
+      },
+      {
+        id: 2,
+        title: "Another Note",
+        content: "Some meaningless Content",
+      },
+    ],
+  };
+  const { getByTestId } = render(<Notes {...props} />);
+
+  expect(getByTestId("note-list")).toBeInTheDocument();
 });

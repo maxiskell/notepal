@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render properly 1`] = `
+<div>
+  <div
+    class="container"
+    data-testid="note-list"
+  >
+    <div
+      class="card w-100 mt-4"
+    >
+      <div
+        class="card-body"
+      >
+        <h5
+          class="card-title"
+        >
+          First Note
+        </h5>
+        <p
+          class="card-text"
+          style="white-space: pre-wrap;"
+        >
+          Test Content
+        </p>
+      </div>
+    </div>
+    <div
+      class="card w-100 mt-4"
+    >
+      <div
+        class="card-body"
+      >
+        <h5
+          class="card-title"
+        >
+          Another Note
+        </h5>
+        <p
+          class="card-text"
+          style="white-space: pre-wrap;"
+        >
+          Some meaningless Content
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -3,7 +3,8 @@
 exports[`renders properly 1`] = `
 <div>
   <div
-    class="mt-4"
+    class="container mt-4"
+    data-testid="note-editor"
   >
     <div
       class="form-group"
@@ -19,6 +20,7 @@ exports[`renders properly 1`] = `
         name="title"
         required=""
         type="text"
+        value=""
       />
     </div>
     <div

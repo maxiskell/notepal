@@ -15,7 +15,7 @@ const Editor: React.FC<IEditorProps> = (props) => {
   const [content, setContent] = useState(props.title || "");
 
   return (
-    <div className="mt-4">
+    <div className="container mt-4" data-testid="note-editor">
       <div className="form-group">
         <label htmlFor="title">Title</label>
         <input
