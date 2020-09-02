@@ -31,3 +31,8 @@ export const openEditor = (noteId: number | null): NoteAction => ({
 export const closeEditor = (): NoteAction => ({
   type: NoteActionTypes.CLOSE_EDITOR,
 });
+
+export const addNote = (note: INote): NoteAction => ({
+  type: NoteActionTypes.ADD,
+  payload: note,
+});

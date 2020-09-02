@@ -17,7 +17,11 @@ export const noteReducer: Reducer<INoteState, NoteAction> = (
     case NoteActionTypes.ADD:
       return {
         ...state,
-        notes: [...state.notes, action.payload],
+        editorOpen: false,
+        notes: [
+          ...state.notes,
+          { id: state.notes.length + 1, ...action.payload },
+        ],
       };
     case NoteActionTypes.OPEN_EDITOR:
       return {

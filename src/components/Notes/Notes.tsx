@@ -3,7 +3,12 @@ import { connect } from "react-redux";
 
 import { INote } from "../../redux/types";
 import { IAppState } from "../../redux/Store";
-import { openEditor, closeEditor, NoteAction } from "../../redux/actions";
+import {
+  addNote,
+  openEditor,
+  closeEditor,
+  NoteAction,
+} from "../../redux/actions";
 
 import Header from "./Header";
 import Editor from "./Editor";
@@ -11,6 +16,7 @@ import Editor from "./Editor";
 export interface INotesProps {
   notes: INote[];
   editorOpen: boolean;
+  addNote: (note: INote) => NoteAction;
   closeEditor: () => NoteAction;
   openEditor: (noteId: number | null) => NoteAction;
 }
@@ -22,7 +28,9 @@ export const Notes: React.FC<INotesProps> = (props) => (
       isEditorOpen={props.editorOpen}
     />
 
-    {props.editorOpen && <Editor close={props.closeEditor} />}
+    {props.editorOpen && (
+      <Editor close={props.closeEditor} save={props.addNote} />
+    )}
   </div>
 );
 
@@ -32,6 +40,7 @@ const mapStateToProps = (store: IAppState) => ({
 });
 
 const mapDispatchToProps = {
+  addNote,
   openEditor,
   closeEditor,
 };
