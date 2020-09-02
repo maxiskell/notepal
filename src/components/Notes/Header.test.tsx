@@ -17,7 +17,7 @@ test("renders app title", () => {
   const { getByText } = render(
     <Header isEditorOpen={false} newNote={mockNewNote} />
   );
-  const title = getByText(/Notes/i);
+  const title = getByText(/Notepal/i);
 
   expect(title).toBeInTheDocument();
 });

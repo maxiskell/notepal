@@ -11,7 +11,7 @@ exports[`renders properly 1`] = `
       <span
         class="navbar-brand mr-auto my-0 h1"
       >
-        Notes
+        Notepal
       </span>
       <button
         class="btn btn-primary"

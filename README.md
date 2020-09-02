@@ -1,4 +1,4 @@
-# Notes
+# Notepal
 
 ## A simple note-taking app
 

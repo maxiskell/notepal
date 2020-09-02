@@ -8,7 +8,7 @@ interface IProps {
 
 const Header: React.FC<IProps> = (props) => (
   <nav className="navbar navbar-light bg-light">
-    <span className="navbar-brand mr-auto my-0 h1">Notes</span>
+    <span className="navbar-brand mr-auto my-0 h1">Notepal</span>
 
     {!props.isEditorOpen && (
       <button className="btn btn-primary" onClick={props.newNote}>
