@@ -2,12 +2,18 @@ import { INote } from "./types";
 
 export enum NoteActionTypes {
   ADD = "ADD_NOTE",
+  UPDATE = "UPDATE",
   OPEN_EDITOR = "OPEN_EDITOR",
   CLOSE_EDITOR = "CLOSE_EDITOR",
 }
 
 export interface IAddNote {
   type: NoteActionTypes.ADD;
+  payload: INote;
+}
+
+export interface IUpdateNote {
+  type: NoteActionTypes.UPDATE;
   payload: INote;
 }
 
@@ -21,7 +27,11 @@ export interface ICloseNoteEditor {
   type: NoteActionTypes.CLOSE_EDITOR;
 }
 
-export type NoteAction = IAddNote | IOpenNoteEditor | ICloseNoteEditor;
+export type NoteAction =
+  | IAddNote
+  | IUpdateNote
+  | IOpenNoteEditor
+  | ICloseNoteEditor;
 
 export const openEditor = (noteId: number | null): NoteAction => ({
   type: NoteActionTypes.OPEN_EDITOR,
@@ -34,5 +44,10 @@ export const closeEditor = (): NoteAction => ({
 
 export const addNote = (note: INote): NoteAction => ({
   type: NoteActionTypes.ADD,
+  payload: note,
+});
+
+export const updateNote = (note: INote): NoteAction => ({
+  type: NoteActionTypes.UPDATE,
   payload: note,
 });

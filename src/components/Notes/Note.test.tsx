@@ -6,6 +6,7 @@ const mockNote = {
   id: 1,
   title: "Test Note",
   content: "Test Content",
+  edit: jest.fn(),
 };
 
 test("render properly", () => {

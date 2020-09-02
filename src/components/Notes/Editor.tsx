@@ -4,15 +4,14 @@ import { NoteAction } from "../../redux/actions";
 import { INote } from "../../redux/types";
 
 interface IEditorProps {
-  title?: string;
-  content?: string;
+  note?: INote;
   save: (note: INote) => NoteAction;
   close: (event: React.MouseEvent<HTMLButtonElement>) => NoteAction;
 }
 
 const Editor: React.FC<IEditorProps> = (props) => {
-  const [title, setTitle] = useState(props.title || "");
-  const [content, setContent] = useState(props.title || "");
+  const [title, setTitle] = useState(props.note?.title || "");
+  const [content, setContent] = useState(props.note?.content || "");
 
   return (
     <div className="container mt-4" data-testid="note-editor">
@@ -24,6 +23,7 @@ const Editor: React.FC<IEditorProps> = (props) => {
           type="text"
           name="title"
           className="form-control"
+          data-testid="note-editor-title"
           value={title}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setTitle(e.target.value)
@@ -38,6 +38,7 @@ const Editor: React.FC<IEditorProps> = (props) => {
           id="content"
           name="content"
           className="form-control"
+          data-testid="note-editor-content"
           value={content}
           onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
             setContent(e.target.value)
@@ -49,6 +50,7 @@ const Editor: React.FC<IEditorProps> = (props) => {
         <button
           type="reset"
           className="btn btn-secondary"
+          data-testid="note-editor-cancel"
           onClick={props.close}
         >
           Cancel
@@ -56,7 +58,8 @@ const Editor: React.FC<IEditorProps> = (props) => {
         <button
           type="submit"
           className="btn btn-primary"
-          onClick={() => props.save({ title, content })}
+          data-testid="note-editor-save"
+          onClick={() => props.save({ id: props.note?.id, title, content })}
         >
           Save
         </button>

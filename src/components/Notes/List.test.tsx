@@ -17,16 +17,14 @@ const mockNotes = [
 ];
 
 test("render properly", () => {
-  const { container } = render(<List notes={mockNotes} />);
+  const { container } = render(<List edit={jest.fn()} notes={mockNotes} />);
 
   expect(container).toMatchSnapshot();
 });
 
 test("render all given notes", () => {
-  const { getByText } = render(<List notes={mockNotes} />);
+  const { getByTestId } = render(<List edit={jest.fn()} notes={mockNotes} />);
 
-  expect(getByText(/First Note/)).toBeInTheDocument();
-  expect(getByText(/Test Content/)).toBeInTheDocument();
-  expect(getByText(/Another Note/)).toBeInTheDocument();
-  expect(getByText(/Some meaningless Content/)).toBeInTheDocument();
+  expect(getByTestId("note-1")).toBeInTheDocument();
+  expect(getByTestId("note-2")).toBeInTheDocument();
 });

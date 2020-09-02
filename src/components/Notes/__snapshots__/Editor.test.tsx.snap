@@ -16,6 +16,7 @@ exports[`renders properly 1`] = `
       </label>
       <input
         class="form-control"
+        data-testid="note-editor-title"
         id="title"
         name="title"
         required=""
@@ -33,6 +34,7 @@ exports[`renders properly 1`] = `
       </label>
       <textarea
         class="form-control"
+        data-testid="note-editor-content"
         id="content"
         name="content"
         required=""
@@ -44,12 +46,14 @@ exports[`renders properly 1`] = `
     >
       <button
         class="btn btn-secondary"
+        data-testid="note-editor-cancel"
         type="reset"
       >
         Cancel
       </button>
       <button
         class="btn btn-primary"
+        data-testid="note-editor-save"
         type="submit"
       >
         Save
