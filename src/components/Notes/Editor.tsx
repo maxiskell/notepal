@@ -18,7 +18,6 @@ const Editor: React.FC<IEditorProps> = (props) => {
       <div className="form-group">
         <label htmlFor="title">Title</label>
         <input
-          required
           id="title"
           type="text"
           name="title"
@@ -33,7 +32,6 @@ const Editor: React.FC<IEditorProps> = (props) => {
       <div className="form-group">
         <label htmlFor="title">Content</label>
         <textarea
-          required
           rows={10}
           id="content"
           name="content"
@@ -59,7 +57,11 @@ const Editor: React.FC<IEditorProps> = (props) => {
           type="submit"
           className="btn btn-primary"
           data-testid="note-editor-save"
-          onClick={() => props.save({ id: props.note?.id, title, content })}
+          onClick={() =>
+            title.length &&
+            content.length &&
+            props.save({ id: props.note?.id, title, content })
+          }
         >
           Save
         </button>

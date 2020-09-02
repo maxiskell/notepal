@@ -18,9 +18,26 @@ test("cancel button calls close function", () => {
   expect(mockClose).toHaveBeenCalledTimes(1);
 });
 
-test("save button calls save function", () => {
+test("save button does not call save function when input is invalid", () => {
   const mockSave = jest.fn();
   const { getByTestId } = render(<Editor save={mockSave} close={jest.fn()} />);
+
+  fireEvent.click(getByTestId("note-editor-save"));
+
+  expect(mockSave).toHaveBeenCalledTimes(0);
+});
+
+test("save button calls save function when input is valid", () => {
+  const mockSave = jest.fn();
+  const { getByTestId } = render(<Editor save={mockSave} close={jest.fn()} />);
+
+  fireEvent.change(getByTestId("note-editor-title"), {
+    target: { value: "Test Title" },
+  });
+
+  fireEvent.change(getByTestId("note-editor-content"), {
+    target: { value: "Test Content" },
+  });
 
   fireEvent.click(getByTestId("note-editor-save"));
 

@@ -19,7 +19,6 @@ exports[`renders properly 1`] = `
         data-testid="note-editor-title"
         id="title"
         name="title"
-        required=""
         type="text"
         value=""
       />
@@ -37,7 +36,6 @@ exports[`renders properly 1`] = `
         data-testid="note-editor-content"
         id="content"
         name="content"
-        required=""
         rows="10"
       />
     </div>
