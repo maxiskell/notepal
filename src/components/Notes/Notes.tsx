@@ -8,14 +8,14 @@ import { openEditor, closeEditor, NoteAction } from "../../redux/actions";
 import Header from "./Header";
 import Editor from "./Editor";
 
-interface INotesProps {
+export interface INotesProps {
   notes: INote[];
   editorOpen: boolean;
   closeEditor: () => NoteAction;
   openEditor: (noteId: number | null) => NoteAction;
 }
 
-const Notes: React.FC<INotesProps> = (props) => (
+export const Notes: React.FC<INotesProps> = (props) => (
   <div className="container">
     <Header
       newNote={() => props.openEditor(null)}
