@@ -44,10 +44,10 @@ const Editor: React.FC<IEditorProps> = (props) => {
         />
       </div>
 
-      <div className="btn-group float-right">
+      <div className="float-right">
         <button
           type="reset"
-          className="btn btn-secondary"
+          className="btn btn-link mr-2"
           data-testid="note-editor-cancel"
           onClick={props.close}
         >
