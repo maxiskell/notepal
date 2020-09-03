@@ -3,9 +3,9 @@ import React from "react";
 import { INote } from "../../redux/types";
 import { NoteAction } from "../../redux/actions";
 
-interface INoteProps extends INote {
-  id: number;
-  edit: (id: number) => NoteAction;
+export interface INoteProps extends INote {
+  id: string;
+  edit: (id: string) => NoteAction;
 }
 
 const Note: React.FC<INoteProps> = (props) => (

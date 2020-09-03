@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import Note from "./Note";
 
 const mockNote = {
-  id: 1,
+  id: "abc",
   title: "Test Note",
   content: "Test Content",
   edit: jest.fn(),

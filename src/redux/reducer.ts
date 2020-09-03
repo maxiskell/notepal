@@ -1,10 +1,11 @@
 import { Reducer } from "redux";
+import { v4 as uuid } from "uuid";
 
-import { INoteState } from "./types";
+import { INoteState, INote } from "./types";
 import { NoteAction, NoteActionTypes } from "./actions";
 
 const initialState: INoteState = {
-  notes: [],
+  notes: new Map() as Map<string, INote>,
   editorOpen: false,
   currentNoteId: null,
 };
@@ -13,19 +14,20 @@ export const noteReducer: Reducer<INoteState, NoteAction> = (
   state = initialState,
   action
 ) => {
+  let notes = state.notes;
+
   switch (action.type) {
     case NoteActionTypes.ADD:
+      notes.set(uuid(), action.payload);
+
       return {
         ...state,
         editorOpen: false,
-        notes: [
-          ...state.notes,
-          { id: state.notes.length + 1, ...action.payload },
-        ],
+        notes,
       };
     case NoteActionTypes.UPDATE:
-      let notes = state.notes;
-      notes[state.currentNoteId! - 1] = action.payload;
+      notes.set(state.currentNoteId!, action.payload);
+
       return {
         ...state,
         notes,

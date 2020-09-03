@@ -1,11 +1,10 @@
 export interface INote {
-  id?: number;
   title: string;
   content: string;
 }
 
 export interface INoteState {
-  notes: Array<INote>;
+  notes: Map<string, INote>;
   editorOpen: boolean;
-  currentNoteId: number | null;
+  currentNoteId: string | null;
 }

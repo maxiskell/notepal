@@ -2,14 +2,34 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 import { Notes, INotesProps } from "./Notes";
+import { INote } from "../../redux/types";
 
 const mockProps: INotesProps = {
-  notes: [],
+  notes: new Map<string, INote>(),
   editorOpen: false,
   addNote: jest.fn(),
+  updateNote: jest.fn(),
   closeEditor: jest.fn(),
   openEditor: jest.fn(),
+  currentNoteId: null,
 };
+
+const mockNotes = new Map<string, INote>([
+  [
+    "abc",
+    {
+      title: "First Note",
+      content: "Test Content",
+    },
+  ],
+  [
+    "xyz",
+    {
+      title: "Another Note",
+      content: "Some meaningless Content",
+    },
+  ],
+]);
 
 test("renders properly", () => {
   const { container } = render(<Notes {...mockProps} />);
@@ -36,18 +56,7 @@ test("not render note list if editor is open", () => {
   const props: INotesProps = {
     ...mockProps,
     editorOpen: true,
-    notes: [
-      {
-        id: 1,
-        title: "First Note",
-        content: "Test Content",
-      },
-      {
-        id: 2,
-        title: "Another Note",
-        content: "Some meaningless Content",
-      },
-    ],
+    notes: mockNotes,
   };
 
   const { queryByTestId } = render(<Notes {...props} />);
@@ -64,18 +73,7 @@ test("not render note list if no notes present", () => {
 test("render note list if editor is closed and there are notes present", () => {
   const props: INotesProps = {
     ...mockProps,
-    notes: [
-      {
-        id: 1,
-        title: "First Note",
-        content: "Test Content",
-      },
-      {
-        id: 2,
-        title: "Another Note",
-        content: "Some meaningless Content",
-      },
-    ],
+    notes: mockNotes,
   };
   const { getByTestId } = render(<Notes {...props} />);
 

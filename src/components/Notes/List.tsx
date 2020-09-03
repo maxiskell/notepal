@@ -5,14 +5,19 @@ import Note from "./Note";
 import { NoteAction } from "../../redux/actions";
 
 interface IListProps {
-  notes: INote[];
-  edit: (id: number) => NoteAction;
+  notes: Map<string, INote>;
+  edit: (id: string) => NoteAction;
 }
-
 const List: React.FC<IListProps> = ({ edit, notes }) => (
   <div className="container" data-testid="note-list">
-    {notes.map((note) => (
-      <Note key={note.id} edit={edit} id={note.id!} {...note} />
+    {[...notes.keys()].map((id) => (
+      <Note
+        key={id}
+        edit={edit}
+        id={id}
+        title={notes.get(id)!.title}
+        content={notes.get(id)!.content}
+      />
     ))}
   </div>
 );

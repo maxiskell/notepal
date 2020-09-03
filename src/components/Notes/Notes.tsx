@@ -9,13 +9,13 @@ import Editor from "./Editor";
 import List from "./List";
 
 export interface INotesProps {
-  notes: INote[];
+  notes: Map<string, INote>;
   editorOpen: boolean;
-  currentNoteId: number | null;
+  currentNoteId: string | null;
   addNote: (note: INote) => NoteAction;
   updateNote: (note: INote) => NoteAction;
   closeEditor: () => NoteAction;
-  openEditor: (noteId: number | null) => NoteAction;
+  openEditor: (noteId: string | null) => NoteAction;
 }
 
 export const Notes: React.FC<INotesProps> = (props) => (
@@ -31,14 +31,14 @@ export const Notes: React.FC<INotesProps> = (props) => (
         save={props.currentNoteId === null ? props.addNote : props.updateNote}
         note={
           props.currentNoteId !== null
-            ? props.notes.find(({ id }) => id === props.currentNoteId)
+            ? props.notes.get(props.currentNoteId)
             : undefined
         }
       />
     )}
 
-    {!props.editorOpen && props.notes.length > 0 && (
-      <List notes={props.notes} edit={(id: number) => props.openEditor(id)} />
+    {!props.editorOpen && props.notes.size > 0 && (
+      <List notes={props.notes} edit={(id: string) => props.openEditor(id)} />
     )}
   </div>
 );

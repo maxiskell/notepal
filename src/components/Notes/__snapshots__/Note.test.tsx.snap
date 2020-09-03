@@ -4,7 +4,7 @@ exports[`render properly 1`] = `
 <div>
   <div
     class="card w-100 mt-4"
-    data-testid="note-1"
+    data-testid="note-abc"
     style="cursor: pointer;"
     title="Click to edit"
   >

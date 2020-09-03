@@ -20,7 +20,7 @@ export interface IUpdateNote {
 export interface IOpenNoteEditor {
   type: NoteActionTypes.OPEN_EDITOR;
   // if no note given, it means "new note"
-  payload: number | null;
+  payload: string | null;
 }
 
 export interface ICloseNoteEditor {
@@ -33,7 +33,7 @@ export type NoteAction =
   | IOpenNoteEditor
   | ICloseNoteEditor;
 
-export const openEditor = (noteId: number | null): NoteAction => ({
+export const openEditor = (noteId: string | null): NoteAction => ({
   type: NoteActionTypes.OPEN_EDITOR,
   payload: noteId,
 });

@@ -58,9 +58,7 @@ const Editor: React.FC<IEditorProps> = (props) => {
           className="btn btn-primary"
           data-testid="note-editor-save"
           onClick={() =>
-            title.length &&
-            content.length &&
-            props.save({ id: props.note?.id, title, content })
+            title.length && content.length && props.save({ title, content })
           }
         >
           Save
