@@ -12,6 +12,7 @@ export interface INotesProps {
   notes: Map<string, INote>;
   editorOpen: boolean;
   currentNoteId: string | null;
+  deleteNote: () => NoteAction;
   addNote: (note: INote) => NoteAction;
   updateNote: (note: INote) => NoteAction;
   closeEditor: () => NoteAction;
@@ -28,6 +29,7 @@ export const Notes: React.FC<INotesProps> = (props) => (
     {props.editorOpen && (
       <Editor
         close={props.closeEditor}
+        delete={props.deleteNote}
         save={props.currentNoteId === null ? props.addNote : props.updateNote}
         note={
           props.currentNoteId !== null

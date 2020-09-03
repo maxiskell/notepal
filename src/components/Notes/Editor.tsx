@@ -3,8 +3,9 @@ import React, { useState, ChangeEvent } from "react";
 import { NoteAction } from "../../redux/actions";
 import { INote } from "../../redux/types";
 
-interface IEditorProps {
+export interface IEditorProps {
   note?: INote;
+  delete: () => NoteAction;
   save: (note: INote) => NoteAction;
   close: (event: React.MouseEvent<HTMLButtonElement>) => NoteAction;
 }
@@ -43,6 +44,19 @@ const Editor: React.FC<IEditorProps> = (props) => {
           }
         />
       </div>
+
+      {props.note && (
+        <div className="float-left">
+          <button
+            type="button"
+            className="btn btn-outline-danger"
+            data-testid="note-editor-delete"
+            onClick={props.delete}
+          >
+            Delete Note
+          </button>
+        </div>
+      )}
 
       <div className="float-right">
         <button

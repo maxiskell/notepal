@@ -3,6 +3,7 @@ import { INote } from "./types";
 export enum NoteActionTypes {
   ADD = "ADD_NOTE",
   UPDATE = "UPDATE",
+  DELETE = "DELETE",
   OPEN_EDITOR = "OPEN_EDITOR",
   CLOSE_EDITOR = "CLOSE_EDITOR",
 }
@@ -15,6 +16,10 @@ export interface IAddNote {
 export interface IUpdateNote {
   type: NoteActionTypes.UPDATE;
   payload: INote;
+}
+
+export interface IDeleteNote {
+  type: NoteActionTypes.DELETE;
 }
 
 export interface IOpenNoteEditor {
@@ -30,6 +35,7 @@ export interface ICloseNoteEditor {
 export type NoteAction =
   | IAddNote
   | IUpdateNote
+  | IDeleteNote
   | IOpenNoteEditor
   | ICloseNoteEditor;
 
@@ -50,4 +56,8 @@ export const addNote = (note: INote): NoteAction => ({
 export const updateNote = (note: INote): NoteAction => ({
   type: NoteActionTypes.UPDATE,
   payload: note,
+});
+
+export const deleteNote = (): NoteAction => ({
+  type: NoteActionTypes.DELETE,
 });

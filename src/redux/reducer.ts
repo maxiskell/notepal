@@ -33,6 +33,14 @@ export const noteReducer: Reducer<INoteState, NoteAction> = (
         notes,
         editorOpen: false,
       };
+    case NoteActionTypes.DELETE:
+      notes.delete(state.currentNoteId!);
+
+      return {
+        ...state,
+        notes,
+        editorOpen: false,
+      };
     case NoteActionTypes.OPEN_EDITOR:
       return {
         ...state,

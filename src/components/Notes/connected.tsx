@@ -4,6 +4,7 @@ import { IAppState } from "../../redux/Store";
 import {
   addNote,
   updateNote,
+  deleteNote,
   openEditor,
   closeEditor,
 } from "../../redux/actions";
@@ -16,6 +17,7 @@ const mapStateToProps = (store: IAppState) => ({
 
 const mapDispatchToProps = {
   addNote,
+  deleteNote,
   updateNote,
   openEditor,
   closeEditor,
