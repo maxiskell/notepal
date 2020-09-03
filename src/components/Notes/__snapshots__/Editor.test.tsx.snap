@@ -40,10 +40,10 @@ exports[`renders properly 1`] = `
       />
     </div>
     <div
-      class="btn-group float-right"
+      class="float-right"
     >
       <button
-        class="btn btn-secondary"
+        class="btn btn-link mr-2"
         data-testid="note-editor-cancel"
         type="reset"
       >
